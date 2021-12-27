@@ -1,25 +1,27 @@
+import { Box, Container } from '@mui/material';
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import './App.scss';
+import { NavbarContainer } from './components/navbar/navbar.container';
+import { ChainsContainer } from './views/chains/chains.container';
+import { HomeContainer } from './views/home/home.container';
+import { TokensContainer } from './views/tokens/tokens.container';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Container>
+        <Box sx={{ padding: '20px' }}>
+          <NavbarContainer></NavbarContainer>
+          
+          <Routes>
+            <Route path="/" element={<HomeContainer/>}/>
+            <Route path="/chain" element={<ChainsContainer/>}/>
+            <Route path="/token" element={<TokensContainer/>}/>
+          </Routes> 
+        </Box>
+      </Container>
+    </BrowserRouter>
   );
 }
 
