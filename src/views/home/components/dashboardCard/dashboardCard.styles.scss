@@ -1,0 +1,13 @@
+.dashboardCard {
+    filter: drop-shadow(4px 4px 3px rgba(0, 0, 0, 0.26));
+    transition: all 0.4s;
+    cursor: default;
+
+    &:hover {
+        filter: drop-shadow(4px 4px 5px rgb(131, 131, 131));
+    }
+
+    Link {
+        cursor: pointer;
+    }
+}
