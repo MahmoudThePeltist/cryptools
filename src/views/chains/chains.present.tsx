@@ -1,8 +1,8 @@
 import React from "react";
 import { Grid, Box, Typography, Modal, Button, Card, LinearProgress } from "@mui/material";
-import { networks } from "../../hooks/useGetProvider";
 import './chains.styles.scss';
 import { DataGrid } from "@mui/x-data-grid";
+import { networks } from "../../utils/networkDefinitions.utils";
 
 const modalStyle = {
     position: 'absolute' as 'absolute',

@@ -41,15 +41,17 @@ export const ChainsContainer = () => {
     }
 
     React.useEffect(() => {
+        setBlockNumber(undefined);
         getBlockNumber()
             .then((response: any) => setBlockNumber(response));
-    }, []);
+    }, [chainId]);
 
     React.useEffect(() => {
+        setBlockData(undefined);
         if(!blockNumber) return;
         getBlockTransactions(blockNumber)
             .then((response: any) => setBlockData(response))
-    }, [blockNumber]);
+    }, [blockNumber, chainId]);
 
     return <ChainsPresent
                 chainId={chainId}
