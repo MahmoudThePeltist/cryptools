@@ -1,11 +1,22 @@
 import React from 'react';
 import { ethers } from 'ethers';
 import { useGetProvider } from './useGetProvider';
+import { useState } from '@hookstate/core';
+import { globalState } from './stateHooks';
 
+/**
+ * fetch the active chain from the state
+ * @returns The current active blockchain ID
+ */
 export const useSelectedChainId = () => {
-    return 1;
+    const state = useState(globalState);
+    return state.value.activeChainId;
 };
 
+/**
+ * Get the block number of the current active chain
+ * @returns a callback that returns a promise which would fetch the block number 
+ */
 export const useGetBlockNumber = () => {
     const chainId = useSelectedChainId();
     const provider = useGetProvider(chainId);
@@ -15,6 +26,10 @@ export const useGetBlockNumber = () => {
     }, [chainId, provider])
 }
 
+/**
+ * Get the transactions that are on a specific block, alongside other block data
+ * @returns a callback that returns a promise to fetch the block data
+ */
 export const useBlockTransactions = () => {
     const chainId = useSelectedChainId();
     const provider = useGetProvider(chainId);

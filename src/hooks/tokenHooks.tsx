@@ -2,6 +2,7 @@ import React from 'react';
 import { Contract, ethers } from 'ethers';
 import ERC20ABI from '../ABIs/erc20.json';
 import { useGetProvider } from './useGetProvider';
+import { useSelectedChainId } from './chainDataHooks';
 
 export interface ITokenData {
     name: string,
@@ -61,7 +62,8 @@ export const useGetTokenContract = () => {
  * @returns callback
  */
 export const useGetTokenData = () => {
-    const provider = useGetProvider(1);
+    const chainId = useSelectedChainId();
+    const provider = useGetProvider(chainId);
 
     return React.useCallback(async (address: string): Promise<ITokenData> => {
         const contract = getContract(address, ERC20ABI, provider);
