@@ -1,5 +1,8 @@
+import { useState } from '@hookstate/core';
 import React from 'react';
+import { globalState } from '../../hooks/stateHooks';
 import { INavOption } from '../../interfaces/navigation.interfaces';
+import { networksArray } from '../../utils/networkDefinitions.utils';
 import { NavbarPresent } from './navbar.present';
 
 export const NavbarContainer = () => {
@@ -11,8 +14,8 @@ export const NavbarContainer = () => {
         {link: '', label: 'Coming Soon...'}
     ];
 
+    const chains = networksArray;
 
-    const settings = ['Select Chain', 'Connect', 'Disconnect'];
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
     const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
   
@@ -31,16 +34,25 @@ export const NavbarContainer = () => {
       setAnchorElUser(null);
     };
 
+    const state = useState(globalState);
+  
+    const setActiveChain = (id: number) => {
+      state.set({...state.value, activeChainId: id});
+      setAnchorElUser(null);
+    };
+
     return (
         <NavbarPresent
             pages={pages}
-            settings={settings}
+            chains={chains}
             anchorElNav={anchorElNav}
             anchorElUser={anchorElUser}
             handleOpenNavMenu={handleOpenNavMenu}
             handleOpenUserMenu={handleOpenUserMenu}
             handleCloseNavMenu={handleCloseNavMenu}
             handleCloseUserMenu={handleCloseUserMenu}
+            activeChain={state.value.activeChainId}
+            setActiveChain={setActiveChain}
             >
         </NavbarPresent>
     )

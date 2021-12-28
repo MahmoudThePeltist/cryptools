@@ -19,13 +19,15 @@ import { INavOption } from "../../interfaces/navigation.interfaces";
 
 export const NavbarPresent = ({
   pages,
-  settings,
+  chains,
   anchorElNav,
   anchorElUser,
   handleOpenNavMenu,
   handleOpenUserMenu,
   handleCloseNavMenu,
   handleCloseUserMenu,
+  activeChain,
+  setActiveChain
 }: any) => {
   return (
     <AppBar className="moudRoundedElement" position="static">
@@ -101,9 +103,11 @@ export const NavbarPresent = ({
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
+            <Tooltip title="Open chains list">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Button variant="contained">Wallet</Button>
+                <Button variant="contained">
+                  {chains.filter((c: any) => c.id == activeChain)[0].label}
+                </Button>
               </IconButton>
             </Tooltip>
             <Menu
@@ -121,9 +125,9 @@ export const NavbarPresent = ({
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting: any) => (
-                <MenuItem key={setting} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+              {chains.map((chain: {id: number, label: string}) => (
+                <MenuItem key={chain.id} onClick={() => setActiveChain(chain.id)}>
+                  <Typography textAlign="center">{chain.label}</Typography>
                 </MenuItem>
               ))}
             </Menu>
