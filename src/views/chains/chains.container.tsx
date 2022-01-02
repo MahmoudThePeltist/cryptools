@@ -3,8 +3,8 @@ import React from "react";
 import {
     useBlockTransactions,
     useGetBlockNumber,
-    useSelectedChainId,
 } from "../../hooks/chainDataHooks";
+import { useSelectedChainId } from "../../hooks/useSelectedChainId";
 import { ChainsPresent } from "./chains.present";
 
 export const ChainsContainer = () => {
@@ -36,7 +36,6 @@ export const ChainsContainer = () => {
             from: transaction.from,
             to: transaction.to,
         }))
-        console.log("transactions ", transactions);
         return transactions;
     }
 
