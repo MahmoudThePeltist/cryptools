@@ -127,7 +127,7 @@ export const NavbarPresent = ({
             >
               {chains.map((chain: {id: number, label: string}) => (
                 <MenuItem key={chain.id} onClick={() => setActiveChain(chain.id)}>
-                  <Typography textAlign="center">{chain.label}</Typography>
+                  <Typography textAlign="center">{ chain.id } - {chain.label}</Typography>
                 </MenuItem>
               ))}
             </Menu>

@@ -1,6 +1,6 @@
 import { useState } from '@hookstate/core';
 import React from 'react';
-import { globalState } from '../../hooks/stateHooks';
+import { defaultState, globalState } from '../../hooks/stateHooks';
 import { INavOption } from '../../interfaces/navigation.interfaces';
 import { networksArray } from '../../utils/networkDefinitions.utils';
 import { NavbarPresent } from './navbar.present';
@@ -37,7 +37,8 @@ export const NavbarContainer = () => {
     const state = useState(globalState);
   
     const setActiveChain = (id: number) => {
-      state.set({...state.value, activeChainId: id});
+      console.log("set active chain: ", id);
+      state.set(data => ({...defaultState, activeChainId: id}));
       setAnchorElUser(null);
     };
 
