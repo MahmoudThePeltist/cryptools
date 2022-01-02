@@ -1,9 +1,16 @@
 
+export interface IDefaultToken {
+    name: string,
+    address: string
+}
+
 export interface INetworkData {
     id: number,
     label: string,
     type: string,
-    scan: string
+    url?: string,
+    scan?: string,
+    default_tokens?: IDefaultToken[]
 }
 
 export interface INetworkDataMapping {
@@ -22,8 +29,12 @@ export const networks: INetworkDataMapping = {
     6: {id: 6, label: 'ETC Kotti Testnet', type: 'ETC', scan: 'WPDNZ2MDAD7NIXM32NV9TXCCEBYTD6582J'},
     63: {id: 63, label: 'ETC Mordor Testnet', type: 'ETC', scan: 'WPDNZ2MDAD7NIXM32NV9TXCCEBYTD6582J'},
 
-    // 56: {id: 56, label: 'BSC Mainnet', type: 'BSC', scan: 'WPDNZ2MDAD7NIXM32NV9TXCCEBYTD6582J'}, // TBD
-    // 97: {id: 97, label: 'BSC Testnet', type: 'BSC', scan: 'WPDNZ2MDAD7NIXM32NV9TXCCEBYTD6582J'}, // TBD
+    56: {id: 56, label: 'BSC Mainnet', type: 'BSC', url: 'https://bsc-dataseed.binance.org/',
+    default_tokens: [{name: 'wBNB', address: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c'},
+                     {name: 'BSC-USD', address: '0x55d398326f99059ff775485246999027b3197955'},
+                     {name: 'wETH', address: '0x2170ed0880ac9a755fd29b2688956bd959f933f8'}]},
+
+    97: {id: 97, label: 'BSC Testnet', type: 'BSC', url: 'https://data-seed-prebsc-1-s1.binance.org:8545/'},
     // 10: {id: 10, label: 'optimism', type: '', scan: ''}, // TBD
     // 62: {id: 62, label: 'classicMorden', type: '', scan: ''}, // TBD
     // 69: {id: 69, label: 'optimism-kovan', type: '', scan: ''}, // TBD
