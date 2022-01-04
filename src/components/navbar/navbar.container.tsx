@@ -9,8 +9,8 @@ export const NavbarContainer = () => {
 
     const pages: INavOption[] = [
         {link: '', label: 'Dashboard'},
-        {link: 'chain', label: 'Chain Info'},
-        {link: 'token', label: 'Token Info'},
+        {link: 'chain', label: 'Blockchains'},
+        {link: 'token', label: 'Tokens'},
         {link: '', label: 'Coming Soon...'}
     ];
 

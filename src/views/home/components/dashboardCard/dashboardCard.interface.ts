@@ -1,7 +1,9 @@
+import { ReactElement } from "react";
+
 export interface IDashboardCardProps {
-    pretitle: string,
-    title: string,
-    subtitle: string,
+    pretitle: ReactElement,
+    title: ReactElement,
+    subtitle: ReactElement,
     body: string,
     link?: string
 }

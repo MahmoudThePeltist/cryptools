@@ -26,9 +26,9 @@ export const HomePresent = ({cards}: {cards: IDashboardCardProps[]}) => {
                 ))}
                 <Grid xs={12} padding={2}>
                     <DashboardCardPure
-                        pretitle={'Cryptool'}
-                        title={'More Coming Soon...'}
-                        subtitle={'hold tight!'}
+                        pretitle={<>Cryptool</>}
+                        title={<>More Coming Soon...</>}
+                        subtitle={<>hold tight!</>}
                         body={''}
                         link={''}
                     />
