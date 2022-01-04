@@ -1,7 +1,9 @@
 import React from 'react';
-import { Box, Modal, Typography, Grid, Button } from '@mui/material';
+import { Box, Modal, Typography, Grid, Button, LinearProgress } from '@mui/material';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import SmartToyIcon from '@mui/icons-material/SmartToy';
 import { CSVLink } from 'react-csv';
+import { IGlobalState, ITokenState } from '../../../hooks/stateHooks';
 
 const modalStyle = {
     position: 'absolute' as 'absolute',
@@ -14,20 +16,40 @@ const modalStyle = {
     p: 4,
   };
 
+interface IExportModalPresentProps {
+    open: boolean,
+    setOpen: any,
+    csvData: any,
+    csvGenElement: any,
+    generateCSVData: any,
+    checkForSmartContracts: any,
+    stateData: IGlobalState,
+    tokenStateData: ITokenState,
+    exportVariant: string,
+    loading: boolean,
+    buttonACount: number,
+    buttonBCount: number
+}
+
 export const ExportModalPresent = ({
     open,
     setOpen,
     csvData,
     csvGenElement,
-    setCsvData,
     generateCSVData,
     stateData,
-    exportVariant
-    }: any) => {
+    checkForSmartContracts,
+    tokenStateData,
+    exportVariant,
+    loading,
+    buttonACount,
+    buttonBCount
+    }: IExportModalPresentProps) => {
     return (
         <>
             <Modal open={open} onClose={() => setOpen(false)}>
                 <Box sx={modalStyle}>
+
                     <Grid container>
                         <Grid xs={12} sx={{padding: 1}}>
                             <Typography variant="h4">
@@ -38,56 +60,92 @@ export const ExportModalPresent = ({
                             </Typography>
                         </Grid>
 
-                        <Grid xs={12} sx={{padding: 1}}>                            
+
+                        {(exportVariant == "UNIQUES") && <>
+                        <Grid xs={12} sx={{padding: 1}}>
+                            <Button
+                                variant="contained" color="success"
+                                sx={{marginRight: 1, marginBottom: 1, width: '100%'}}
+                                onClick={() => generateCSVData('', 'all')}>
+                                <FileDownloadIcon/> All {tokenStateData?.uniqueAddresses?.length} Addresses
+                            </Button>
+                        </Grid>
+                        <Grid xs={12} sx={{padding: 1}}>
+                            <Button
+                                variant="contained" color="info"
+                                sx={{marginRight: 1, marginBottom: 1, width: '100%'}}
+                                onClick={() => checkForSmartContracts()}>
+                                <SmartToyIcon sx={{marginRight: 1}}/>
+                                Check for Smart Contracts ({ tokenStateData?.testedAddresses.length } / {tokenStateData?.uniqueAddresses?.length})
+                            </Button>
+                        </Grid>
+                        <Grid xs={6} sx={{padding: 1}}>
+                            <Button
+                                variant="contained" color="success"
+                                sx={{marginRight: 1, marginBottom: 1, width: '100%'}}
+                                onClick={() => generateCSVData('', 'contracts')}>
+                                <FileDownloadIcon/> Smart Contracts ({
+                                    tokenStateData?.testedAddresses.filter(data => data.status == false).length + ' / ' + tokenStateData?.testedAddresses.length
+                                })
+                            </Button>
+                        </Grid>
+                        <Grid xs={6} sx={{padding: 1}}>
+                            <Button
+                                variant="contained" color="success"
+                                sx={{marginRight: 1, marginBottom: 1, width: '100%'}}
+                                onClick={() => generateCSVData('', 'humans')}>
+                                <FileDownloadIcon/> Not Smart Contracts ({
+                                    tokenStateData?.testedAddresses.filter(data => data.status == true).length + ' / ' + tokenStateData?.testedAddresses.length
+                                })
+                            </Button>
+                        </Grid>
+                        <Grid xs={12} sx={{textAlign: 'center'}}>
+                            <Typography variant="subtitle1">
+                                Non-contract analysis may take a few minutes, make sure listener is off
+                            </Typography>
+                        </Grid>
+                        </>}
+
+                        {!(exportVariant == "UNIQUES") && <>
+                        <Grid xs={12} sx={{padding: 1}}>
+                            <Button
+                                variant="contained" color="success"
+                                sx={{marginRight: 1, marginBottom: 1, width: '100%'}}
+                                onClick={() => generateCSVData()}>
+                                {(exportVariant == "Transfers") &&
+                                    (<><FileDownloadIcon/> All {stateData?.transfers?.length} Transfers</>)}
+                                {(exportVariant == "Approvals") &&
+                                    (<><FileDownloadIcon/> All {stateData?.approvals?.length} Approvals</>)}
+                            </Button>
+                        </Grid>
+
+                        <Grid xs={6} sx={{padding: 1}}>                             
                             <Button
                                 variant="contained" color="secondary"
-                                sx={{marginRight: 1, marginBottom: 1}}
-                                onClick={() => setCsvData(generateCSVData())}>
+                                sx={{marginRight: 1, marginBottom: 1, width: '100%'}}
+                                onClick={() => generateCSVData((exportVariant == "Transfers" ? "from" : "owner"))}>
                                 {exportVariant == "Transfers" ?
-                                    (<><FileDownloadIcon/> All {stateData?.transfers?.length} Transfers</>) :
-                                    (<><FileDownloadIcon/> All {stateData?.approvals?.length} Approvals</>)
+                                    (<><FileDownloadIcon/> {buttonACount} unique "From" Addresses</>) :
+                                    (<><FileDownloadIcon/> {buttonACount} unique "Owner" Addresses</>)
                                 }
                             </Button>
-                            
+                        </Grid>
+
+                        <Grid xs={6} sx={{padding: 1}}>                            
                             <Button
                                 variant="contained" color="secondary"
-                                sx={{marginRight: 1, marginBottom: 1}}
-                                onClick={() => setCsvData(generateCSVData((exportVariant == "Transfers" ? "from" : "owner")))}>
+                                sx={{marginRight: 1, marginBottom: 1, width: '100%'}}
+                                onClick={() => generateCSVData((exportVariant == "Transfers" ? "to" : "spender"))}>
                                 {exportVariant == "Transfers" ?
-                                    (<><FileDownloadIcon/> Unique "From" Addresses</>) :
-                                    (<><FileDownloadIcon/> Unique "Owner" Addresses</>)
+                                    (<><FileDownloadIcon/> {buttonBCount} unique "To" Addresses</>) :
+                                    (<><FileDownloadIcon/> {buttonBCount} unique "Spender" Addresses</>)
                                 }
                             </Button>
-                            
-                            <Button
-                                variant="contained" color="secondary"
-                                sx={{marginRight: 1, marginBottom: 1}}
-                                onClick={() => setCsvData(generateCSVData((exportVariant == "Transfers" ? "to" : "spender")))}>
-                                {exportVariant == "Transfers" ?
-                                    (<><FileDownloadIcon/> Unique "To" Addresses</>) :
-                                    (<><FileDownloadIcon/> Unique "Spender" Addresses</>)
-                                }
-                            </Button>
-                            
-                            <Button
-                                variant="contained" color="secondary"
-                                sx={{marginRight: 1, marginBottom: 1}}
-                                onClick={() => setCsvData(generateCSVData((exportVariant == "Transfers" ? "from" : "owner"), true))}>
-                                {exportVariant == "Transfers" ?
-                                    (<><FileDownloadIcon/> Unique Non-Contract "From" Addresses</>) :
-                                    (<><FileDownloadIcon/> Unique Non-Contract "Owner" Addresses</>)
-                                }
-                            </Button>
-                            
-                            <Button
-                                variant="contained" color="secondary"
-                                sx={{marginRight: 1, marginBottom: 1}}
-                                onClick={() => setCsvData(generateCSVData((exportVariant == "Transfers" ? "to" : "spender"), true))}>
-                                {exportVariant == "Transfers" ?
-                                    (<><FileDownloadIcon/> Unique Non-Contract "To" Addresses</>) :
-                                    (<><FileDownloadIcon/> Unique Non-Contract "Spender" Addresses</>)
-                                }
-                            </Button>
+                        </Grid>
+                        </>}
+
+                        <Grid xs={12} sx={{padding: 1}}>
+                            {loading ? <LinearProgress sx={{margin: 2}} color="primary" /> : ''}
                         </Grid>
                     </Grid>
 
