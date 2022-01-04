@@ -1,5 +1,5 @@
 import React from 'react';
-import { Contract, ethers } from 'ethers';
+import { Contract, ethers, providers } from 'ethers';
 import ERC20ABI from '../ABIs/erc20.json';
 import { useGetProvider } from './useGetProvider';
 import { IERC20Contract, ITokenData } from '../interfaces/token.intefaces';
@@ -136,5 +136,30 @@ export const useQueryApprovals = () => {
             console.log("Query filter result: ", result);
             return result;
         } catch(e) { throw(e) }
+    }, [provider]);
+}
+
+export const useCheckIfContract = () => {
+    const provider = useGetProvider();
+
+    return React.useCallback(async (address: string): Promise<any> => {
+        if(!address) throw("Address required");
+        return await provider.getCode(address);
+    }, [provider]);
+}
+
+export const useCheckManyIfContract = () => {
+    const provider = useGetProvider();
+
+    return React.useCallback(async (addresses: string[], callback): Promise<void> => {
+        for(let [index, address] of addresses.entries()) {
+            if(!address) continue;
+            const code = await provider.getCode(address);
+
+            if(code == '0x') 
+                callback(address, true);
+            else
+                callback(address, false);
+        }
     }, [provider]);
 }
