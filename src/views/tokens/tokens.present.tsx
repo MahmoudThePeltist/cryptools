@@ -69,7 +69,7 @@ export const TokensPresent = ({
             <Grid container spacing={2}>
                 <Grid xs={12}>
                     <Card sx={{padding: 2, margin: 2}}>
-                        <Typography variant='h3'>Token Info</Typography>
+                        <Typography variant='h3'>💰 Token Info</Typography>
                         <Typography variant='h4'>Fetch token data from {networkData.label}</Typography>
                     </Card>
                 </Grid>
@@ -130,25 +130,25 @@ export const TokensPresent = ({
                             </Grid>
                             <Grid xs={12} sm={6} md={3} sx={{padding: 1}}>
                                 <Card sx={{padding: 1}}>
-                                    <Typography variant='subtitle1'>Name</Typography>
+                                    <Typography variant='subtitle1'>🔹 Name</Typography>
                                     <Typography variant='h6'>{ tokenData.name }</Typography>
                                 </Card>
                             </Grid>
                             <Grid xs={12} sm={6} md={3} sx={{padding: 1}}>
                                 <Card sx={{padding: 1}}>
-                                    <Typography variant='subtitle1'>Symbol</Typography>
+                                    <Typography variant='subtitle1'>🔹 Symbol</Typography>
                                     <Typography variant='h6'>{ tokenData.symbol }</Typography>
                                 </Card>
                             </Grid>
                             <Grid xs={12} sm={6} md={3} sx={{padding: 1}}>
                                 <Card sx={{padding: 1}}>
-                                    <Typography variant='subtitle1'>Decimals</Typography>
+                                    <Typography variant='subtitle1'>🔹 Decimals</Typography>
                                     <Typography variant='h6'>{ tokenData.decimals }</Typography>
                                 </Card>
                             </Grid>
                             <Grid xs={12} sm={6} md={3} sx={{padding: 1}}>
                                 <Card sx={{padding: 1}}>
-                                    <Typography variant='subtitle1'>Total Tokens</Typography>
+                                    <Typography variant='subtitle1'>🔹 Total Tokens</Typography>
                                     <Typography variant='h6'>
                                         { `${tokenData.totalSupply.toString() / (10 ** +tokenData.decimals)}` }
                                     </Typography>

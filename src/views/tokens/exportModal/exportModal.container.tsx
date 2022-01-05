@@ -3,7 +3,7 @@ import { ExportModalPresent } from './exportModal.present';
 import { IApproval, ITransfer } from '../../../interfaces/token.intefaces';
 import { useHookstate } from '@hookstate/core';
 import { globalState, tokenState } from '../../../hooks/stateHooks';
-import { useCheckManyIfContract } from '../../../hooks/tokenHooks';
+import { useCheckManyIfNotContract } from '../../../hooks/addressHooks';
 
 interface IExportModalContainerProps {
     tokenData: any,
@@ -22,7 +22,7 @@ export const ExportModalContainer = ({
     const state = useHookstate(globalState);
     const tState = useHookstate(tokenState);
 
-    const checkManyIfContract = useCheckManyIfContract();
+    const smartContractChecker = useCheckManyIfNotContract();
 
     const csvGenElement = React.useRef<any>();
     const [csvData, setCsvData] = React.useState<any[]>([]);
@@ -75,7 +75,7 @@ export const ExportModalContainer = ({
         const formattedData = tState.value.uniqueAddresses.map(data => ({address: data}));
         const uniqueAddressses: any[] = fetchUniqueAttributeArrays(formattedData, uniqueColumnData, false);
         
-        checkManyIfContract(uniqueAddressses, (address: string, status: boolean) => {
+        smartContractChecker(uniqueAddressses, (address: string, status: boolean) => {
             let payload = {address, status};
             console.log("is human? ", payload);
             tokenState.set(data => ({...data, testedAddresses: [...data.testedAddresses, payload]}));

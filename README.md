@@ -7,7 +7,7 @@ A small project to mess around with some crypto concepts. Will try to continue t
 3. Styling in SCSS
 4. Blockchain connection using ethers.js
 5. Presistant state management using hookstate.js
-6. UIs developed in Material +UI
+6. UIs developed in Material UI
 7. CI/CD with firebase hosting
 
 ## Serving project
