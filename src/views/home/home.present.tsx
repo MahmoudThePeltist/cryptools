@@ -14,7 +14,7 @@ export const HomePresent = ({cards}: {cards: IDashboardCardProps[]}) => {
                     </Typography>
                 </Grid>
                 { cards.map((card: IDashboardCardProps) => (
-                    <Grid sm={6} xs={12} padding={2}>
+                    <Grid sm={4} xs={12} padding={2}>
                         <DashboardCardPure
                             pretitle={card.pretitle}
                             title={card.title}

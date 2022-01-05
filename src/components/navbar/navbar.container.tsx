@@ -11,7 +11,7 @@ export const NavbarContainer = () => {
         {link: '', label: 'Dashboard'},
         {link: 'chain', label: 'Blockchains'},
         {link: 'token', label: 'Tokens'},
-        {link: '', label: 'Coming Soon...'}
+        {link: 'address', label: 'Addresses'}
     ];
 
     const chains = networksArray;

@@ -3,6 +3,7 @@ import { IDashboardCardProps } from './components/dashboardCard/dashboardCard.in
 import { HomePresent } from "./home.present";
 import LinkIcon from '@mui/icons-material/Link';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 
 export const HomeContainer = () => {
 
@@ -19,6 +20,12 @@ export const HomeContainer = () => {
             subtitle: <>ERC20/BEP20</>,
             body: 'Data about a specific ERC20 standard token on the selected blockchain, event analysis and unique address fetching and exporting.',
             link: 'token'
+        }, {
+            pretitle: <><AlternateEmailIcon/></>,
+            title: <>Addresses</>,
+            subtitle: <>Wallets and Smart Contracts</>,
+            body: 'General purpose interactions with addresses directly.',
+            link: 'address'
         },
     ]
 
