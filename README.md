@@ -1,6 +1,14 @@
 # Moud's Cryptools
 A small project to mess around with some crypto concepts. Will try to continue to build on it depending on my free time.
 
+## Features
+ * Supports 10 blockchains.
+ * Fetch the latest block data and transactions for the selected blockchain.
+ * Predicts which blocks will be mined on which date.
+ * Fetch data about a specific ERC20 standard token on the selected blockchain.
+ * Token event listening, data gathering and export as CSV.
+ * Collect unique addresses, check for humans/smart contract and  export as CSV.
+ 
 ## Technology
 1. Built using React via Create-React-App
 2. Built in Typescript

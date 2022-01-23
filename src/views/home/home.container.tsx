@@ -12,7 +12,7 @@ export const HomeContainer = () => {
             pretitle: <><LinkIcon/></>,
             title: <>Blockchains</>,
             subtitle: <>Chain Info</>,
-            body: "Fetch the latest block data about the currently selected blockchain. Also fetch and list the block's transactions.",
+            body: "Fetch the latest block data and transactions for the selected blockchain. Predicts which blocks will be mined on which date.",
             link: 'chain'
         }, {
             pretitle: <><MonetizationOnIcon/></>,
@@ -24,7 +24,7 @@ export const HomeContainer = () => {
             pretitle: <><AlternateEmailIcon/></>,
             title: <>Addresses</>,
             subtitle: <>Wallets and Smart Contracts</>,
-            body: 'General purpose interactions with addresses directly.',
+            body: 'General purpose interactions with addresses directly. Check if an address is a smart contract.',
             link: 'address'
         },
     ]
