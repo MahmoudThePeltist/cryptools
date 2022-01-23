@@ -8,22 +8,27 @@ import { ChainsContainer } from './views/chains/chains.container';
 import { HomeContainer } from './views/home/home.container';
 import { TokensContainer } from './views/tokens/tokens.container';
 
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+
 const App = () => {
   return (
-    <BrowserRouter>
-      <Container>
-        <Box sx={{ padding: '20px' }}>
-          <NavbarContainer></NavbarContainer>
-          
-          <Routes>
-            <Route path="/" element={<HomeContainer/>}/>
-            <Route path="/chain" element={<ChainsContainer/>}/>
-            <Route path="/token" element={<TokensContainer/>}/>
-            <Route path="/address" element={<AddressesContainer/>}/>
-          </Routes> 
-        </Box>
-      </Container>
-    </BrowserRouter>
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <BrowserRouter>
+        <Container>
+          <Box sx={{ padding: '20px' }}>
+            <NavbarContainer></NavbarContainer>
+            
+            <Routes>
+              <Route path="/" element={<HomeContainer/>}/>
+              <Route path="/chain" element={<ChainsContainer/>}/>
+              <Route path="/token" element={<TokensContainer/>}/>
+              <Route path="/address" element={<AddressesContainer/>}/>
+            </Routes> 
+          </Box>
+        </Container>
+      </BrowserRouter>
+    </LocalizationProvider>
   );
 }
 
