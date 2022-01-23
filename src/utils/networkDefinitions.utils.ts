@@ -8,6 +8,8 @@ export interface INetworkData {
     id: number,
     label: string,
     type: string,
+    avg_blocktime: number,
+    scanner_site?: string,
     url?: string,
     scan?: string,
     default_tokens?: IDefaultToken[]
@@ -22,6 +24,8 @@ export const networks: INetworkDataMapping = {
     1: {
         id: 1, label: 'ETH Mainnet', type: 'ETH',
         scan: 'WPDNZ2MDAD7NIXM32NV9TXCCEBYTD6582J',
+        scanner_site: 'https://etherscan.io',
+        avg_blocktime: 13.19,
         default_tokens: [
             {name: 'BNB', address: '0xB8c77482e45F1F44dE1745F52C74426C631bDD52'},
             {name: 'Tether USD', address: '0xdac17f958d2ee523a2206206994597c13d831ec7'},
@@ -33,41 +37,54 @@ export const networks: INetworkDataMapping = {
     3: {
         id: 3, label: 'ETH Ropsten Testnet', type: 'ETH',
         scan: 'WPDNZ2MDAD7NIXM32NV9TXCCEBYTD6582J',
+        scanner_site: 'https://ropsten.etherscan.io',
+        avg_blocktime: 15,
         default_tokens: []
     },
     4: {
         id: 4, label: 'ETH Rinkeby Testnet', type: 'ETH',
         scan: 'WPDNZ2MDAD7NIXM32NV9TXCCEBYTD6582J',
+        scanner_site: 'https://rinkeby.etherscan.io',
+        avg_blocktime: 15,
         default_tokens: []
     },
     5: {
         id: 5, label: 'ETH Goerli Testnet', type: 'ETH',
         scan: 'WPDNZ2MDAD7NIXM32NV9TXCCEBYTD6582J',
+        scanner_site: 'https://goerli.etherscan.io',
+        avg_blocktime: 15,
         default_tokens: []
     },
     42: {
         id: 42, label: 'ETH Kovan Testnet', type: 'ETH',
         scan: 'WPDNZ2MDAD7NIXM32NV9TXCCEBYTD6582J',
+        scanner_site: 'https://kovan.etherscan.io',
+        avg_blocktime: 15,
         default_tokens: []
     },
     61: {
         id: 61, label: 'ETC Mainnet', type: 'ETC',
         scan: 'WPDNZ2MDAD7NIXM32NV9TXCCEBYTD6582J',
+        avg_blocktime: 18,
         default_tokens: []
     },
     6: {
         id: 6, label: 'ETC Kotti Testnet', type: 'ETC',
         scan: 'WPDNZ2MDAD7NIXM32NV9TXCCEBYTD6582J',
+        avg_blocktime: 18,
         default_tokens: []
     },
     63: {
         id: 63, label: 'ETC Mordor Testnet', type: 'ETC',
         scan: 'WPDNZ2MDAD7NIXM32NV9TXCCEBYTD6582J',
+        avg_blocktime: 18,
         default_tokens: []
     },
     56: {
         id: 56, label: 'BSC Mainnet', type: 'BSC',
         url: 'https://bsc-dataseed.binance.org/',
+        scanner_site: 'https://bscscan.com',
+        avg_blocktime: 3,
         default_tokens: [
             {name: 'wBNB', address: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c'},
             {name: 'BSC-USD', address: '0x55d398326f99059ff775485246999027b3197955'},
@@ -79,6 +96,8 @@ export const networks: INetworkDataMapping = {
     97: {
         id: 97, label: 'BSC Testnet', type: 'BSC',
         url: 'https://data-seed-prebsc-1-s1.binance.org:8545/',
+        scanner_site: 'https://testnet.bscscan.com',
+        avg_blocktime: 3,
         default_tokens: [
             {name: 'SWAPX-LP', address: '0x3BFcD139a952baCf16425B32af62Aa4b8f569775'},
             {name: 'BUSD', address: '0x78867bbeef44f2326bf8ddd1941a4439382ef2a7'},
