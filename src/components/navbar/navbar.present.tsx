@@ -39,7 +39,7 @@ export const NavbarPresent = ({
             component="div"
             sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
           >
-            M⚙ud's Cryptools
+            Crypt⚙⚙ls
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>

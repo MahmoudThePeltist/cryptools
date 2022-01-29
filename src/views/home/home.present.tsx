@@ -9,8 +9,11 @@ export const HomePresent = ({cards}: {cards: IDashboardCardProps[]}) => {
         <Box sx={{padding: '20px'}}>            
             <Grid container spacing={1}>
                 <Grid xs={12}>
-                    <Typography variant='h2' sx={{paddingTop: 2, paddingBottom: 2}}>
-                        Welcome to Moud's Cryptools
+                    <Typography variant='h2' sx={{paddingTop: 2}}>
+                        Dev Cryptools
+                    </Typography>
+                    <Typography variant='h6' sx={{paddingBottom: 2}}>
+                        Tools to help out web3 developers and testers
                     </Typography>
                 </Grid>
                 { cards.map((card: IDashboardCardProps) => (
@@ -27,8 +30,8 @@ export const HomePresent = ({cards}: {cards: IDashboardCardProps[]}) => {
                 <Grid xs={12} padding={2}>
                     <DashboardCardPure
                         pretitle={<>Cryptool</>}
-                        title={<>More Coming Soon...</>}
-                        subtitle={<>hold tight!</>}
+                        title={<>More tools coming soon...</>}
+                        subtitle={<>Developed by <a href="https://github.com/MahmoudThePeltist/cryptools">Moud</a> for practice</>}
                         body={''}
                         link={''}
                     />

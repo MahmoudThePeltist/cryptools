@@ -1,8 +1,8 @@
 {
   "name": "web3-tools",
-  "version": "0.5.5",
+  "version": "0.5.6",
   "author": "Moud",
-  "description": "Moud's Cryptools is a software solution for some crypto related problems.",
+  "description": "Dev Cryptools is a software solution for some crypto related problems.",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.7.1",
